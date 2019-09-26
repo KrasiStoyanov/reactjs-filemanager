@@ -1,0 +1,1169 @@
+[
+  {
+    "title": "CMS",
+    "type": "folder",
+    "status": "in-progress",
+    "children": [
+      {
+        "title": "CMS.Web",
+        "type": "folder",
+        "status": "in-progress",
+        "children": [
+          {
+            "title": "Views",
+            "type": "folder",
+            "status": "in-progress",
+            "children": [
+              {
+                "title": "Templates",
+                "type": "folder",
+                "status": "in-progress",
+                "children": [
+                  {
+                    "title": "6",
+                    "type": "folder",
+                    "status": "in-progress",
+                    "children": [
+                      {
+                        "title": "actions",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "standaard",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "basic",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "download-mac-software",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "download-software",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "download-windows-software",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "error",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "single-column",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "category",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "standaard",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "standaard-new",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "contact",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "standaard",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "contact",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "standaard",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "faq",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "answers",
+                            "type": "folder",
+                            "status": "in-progress",
+                            "children": [
+                              {
+                                "title": "kolommen",
+                                "type": "file",
+                                "extension": "cshtml",
+                                "status": "to-do"
+                              },
+                              {
+                                "title": "kolommen-afbeelding-rechts",
+                                "type": "file",
+                                "extension": "cshtml",
+                                "status": "to-do"
+                              }
+                            ]
+                          },
+                          {
+                            "title": "_FaqMenuItemPartial",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "_FaqSupportItemPartial",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "faqhome",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "faqitem",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "groupsoftware",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "standaard",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "home",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "standaard",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "landings",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "dual-column",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "single-column",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "single-column-paragraphs",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "square-image-paragraphs",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "paragraphs",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "afbeelding-links",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "standaard",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "stappen",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "pricecalulcator",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "_PriceCalculator",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "standaard",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "pricelist",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "standaard",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "product",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "description",
+                            "type": "folder",
+                            "status": "in-progress",
+                            "children": [
+                              {
+                                "title": "kolommen",
+                                "type": "file",
+                                "extension": "cshtml",
+                                "status": "to-do"
+                              },
+                              {
+                                "title": "kolommen-afbeelding-rechts",
+                                "type": "file",
+                                "extension": "cshtml",
+                                "status": "to-do"
+                              }
+                            ]
+                          },
+                          {
+                            "title": "multi-productpagina",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "multi-productpagina-360",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "standaard",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "standaard-360",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "Shared",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "_FeedbackRatingPartial",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "_InjectionPartial",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "_SoftwareOverviewTablePartial",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "shippingrates",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "standaard",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "sitemap",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "standaard",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "software",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "standaard",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "staffels",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "standaard",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "support",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "standaard",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "voucheraction",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "standaard",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Web",
+    "type": "folder",
+    "status": "in-progress",
+    "children": [
+      {
+        "title": "Site.Web",
+        "type": "folder",
+        "status": "in-progress",
+        "children": [
+          {
+            "title": "Areas",
+            "type": "folder",
+            "status": "in-progress",
+            "children": [
+              {
+                "title": "ShoppingCart",
+                "type": "folder",
+                "status": "in-progress",
+                "children": [
+                  {
+                    "title": "Views",
+                    "type": "folder",
+                    "status": "in-progress",
+                    "children": [
+                      {
+                        "title": "Account",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "_ExternalLoginsListPartial",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "_ExternalRegisterListPartial",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "ConfirmEmail",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "ExternalLoginConfirmation",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "ExternalLoginFailur",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "ForgotPassword",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "ForgotPasswordConfirmation",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "Index",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "Login",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "Register",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "RegisterSuccessful",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "ResetPassword",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "ResetPasswordConfirmation",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "SendCode",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "VerifyCode",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "AddProduct",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "EditorTemplates",
+                            "type": "folder",
+                            "status": "in-progress",
+                            "children": [
+                              {
+                                "title": "OptionGroupVM",
+                                "type": "file",
+                                "extension": "cshtml",
+                                "status": "to-do"
+                              }
+                            ]
+                          },
+                          {
+                            "title": "AttachToLine",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "Edit",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "Address",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "Add",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "Addpartial",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "Edit",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "Index",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "Credits",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "Index",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "Home",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "Index",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "Lottery",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "Index",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "Manage",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "_AddressPartial",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "_ChangePassword",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "_EditProfile",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "_ManageLogins",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "_SetPassword",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "_ViewAddressPartial",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "AccountDeactivated",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "AddPhoneNumber",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "DeactivateAccount",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "Index",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "VerifyPhoneNumber",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "OrderHistory",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "Index",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "PayOnClick",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "Index",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "PaymentFinished",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "StartPayment",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "PreBuy",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "Index",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "PaymentFinished",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "StartPayment",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "ProductsMade",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "_Productpartial",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "Index",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "Shared",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "Lockout",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "StepFour",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "_FacebookPartial",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "Decline",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "Error",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "Index",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "StartPayment",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "Success",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "StepOne",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "_OrderlinePartial",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "_OrderlinePartialMobile",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "Index",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "StepThree",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "_OrderlinePartial",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "Index",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      },
+                      {
+                        "title": "StepTwo",
+                        "type": "folder",
+                        "status": "in-progress",
+                        "children": [
+                          {
+                            "title": "_AddAddress",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "_AddressPartial",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "_CollectionPoints",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "Address",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "AddressModal",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "CollectionPointsModal",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "Index",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          },
+                          {
+                            "title": "ShowAddress",
+                            "type": "file",
+                            "extension": "cshtml",
+                            "status": "to-do"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Views",
+            "type": "folder",
+            "status": "in-progress",
+            "children": [
+              {
+                "title": "Contact",
+                "type": "folder",
+                "status": "in-progress",
+                "children": [
+                  {
+                    "title": "_DtpFormPartial",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  },
+                  {
+                    "title": "ContactEmail",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  },
+                  {
+                    "title": "ContactFormFields",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  },
+                  {
+                    "title": "DtpEmail",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  }
+                ]
+              },
+              {
+                "title": "Data",
+                "type": "folder",
+                "status": "in-progress",
+                "children": [
+                  {
+                    "title": "EmailTemplates",
+                    "type": "folder",
+                    "status": "in-progress",
+                    "children": [
+                      {
+                        "title": "PreBuyConfirmation",
+                        "type": "file",
+                        "extension": "cshtml",
+                        "status": "to-do"
+                      },
+                      {
+                        "title": "PreBuyConfirmationAction",
+                        "type": "file",
+                        "extension": "cshtml",
+                        "status": "to-do"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "MailTemplates",
+                "type": "folder",
+                "status": "in-progress",
+                "children": [
+                  {
+                    "title": "OrderConfirmation",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  },
+                  {
+                    "title": "PdfUploader",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  },
+                  {
+                    "title": "Quote",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  },
+                  {
+                    "title": "SoftwareInstruction",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  }
+                ]
+              },
+              {
+                "title": "PdfUploader",
+                "type": "folder",
+                "status": "in-progress",
+                "children": [
+                  {
+                    "title": "Index",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  }
+                ]
+              },
+              {
+                "title": "Preview",
+                "type": "folder",
+                "status": "in-progress",
+                "children": [
+                  {
+                    "title": "EncryptedChange",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  },
+                  {
+                    "title": "Preview",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  },
+                  {
+                    "title": "PreviewDev",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  }
+                ]
+              },
+              {
+                "title": "Shared",
+                "type": "folder",
+                "status": "in-progress",
+                "children": [
+                  {
+                    "title": "_ActionBarPartial",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  },
+                  {
+                    "title": "_InjectionPartial",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  },
+                  {
+                    "title": "_Layout",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  },
+                  {
+                    "title": "_LoginPartial",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  },
+                  {
+                    "title": "_PreviewPartial",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  },
+                  {
+                    "title": "Error",
+                    "type": "file",
+                    "extension": "cshtml",
+                    "status": "to-do"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
