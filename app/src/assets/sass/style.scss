@@ -1,0 +1,23 @@
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+
+.collapsed {
+	display: none;
+}
+
+.in-progress {
+	color: blue;
+}
+
+.completed {
+	color: green;
+}
+
+.deprecated {
+	color: purple;
+	text-decoration: line-through;
+}
+
+.to-do {
+	color: red;
+}
