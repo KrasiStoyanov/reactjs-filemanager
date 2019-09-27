@@ -1,0 +1,23 @@
+html {
+	min-width: 320px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #505050;
+	font-size: 62.5%;
+	/* 1 */
+	font-smoothing: antialiased;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: 100%;
+}
+
+// horizontal overflow fix
+body,
+html {
+	max-width: 100%;
+	overflow-x: hidden;
+	scroll-behavior: smooth;
+}
+
+body {
+	display: block;
+	overflow: hidden;
+}

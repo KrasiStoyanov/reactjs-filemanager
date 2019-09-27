@@ -1,23 +1,12 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 
+// Base
+@import "./base/base";
+
+// Components
+@import "./components/file-manager";
+
 .collapsed {
 	display: none;
-}
-
-.in-progress {
-	color: blue;
-}
-
-.completed {
-	color: green;
-}
-
-.deprecated {
-	color: purple;
-	text-decoration: line-through;
-}
-
-.to-do {
-	color: red;
 }

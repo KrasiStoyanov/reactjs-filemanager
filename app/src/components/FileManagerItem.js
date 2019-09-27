@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { ItemTypes } from '../constants/ItemTypes';
+import { StatusTypes } from '../constants/StatusTypes';
 import Filemanager from './FileManager';
 
 class FileManagerItem extends Component {
@@ -18,7 +19,18 @@ class FileManagerItem extends Component {
   }
 
   toggleFileState() {
-    this.props.item.state = this.props.item.state !== 'undefined' ? !this.props.item.state : true;
+    switch (this.props.item.status) {
+      case StatusTypes.todo:
+        this.props.item.status = StatusTypes.inProgress;
+        break;
+      case StatusTypes.inProgress:
+        this.props.item.status = StatusTypes.done;
+        break;
+        case StatusTypes.done:
+          this.props.item.status = StatusTypes.todo;
+          break;  
+    }
+
     this.props.updateData();
   }
   
@@ -29,18 +41,21 @@ class FileManagerItem extends Component {
     return (
       <li>
         {itemType === ItemTypes.folder ?
-          <div onClick={this.collapseFolder.bind(this)}>
+          <button 
+            onClick={this.collapseFolder.bind(this)}
+            className={`file-manager__item file-manager__item--small file-manager__item--folder`}
+          >
             {item.title}
-          </div>
+          </button>
           : ''
         }
         {itemType === ItemTypes.file ?
-          <span 
+          <button 
             onClick={this.toggleFileState.bind(this)}
-            className={item.status}
+            className={`file-manager__item file-manager__item--file file-manager__item--file-${item.status}`}
           >
             {item.title}.{item.extension}
-          </span>
+          </button>
           : ''
         }
         {item.children ? (

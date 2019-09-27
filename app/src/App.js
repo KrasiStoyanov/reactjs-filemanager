@@ -13,17 +13,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('beforeunload', () => {
-      this.setState({
-        didTransferData: false
-      });
-
-      if (!this.state.didTransferData) {
-        alert('You sure bout this?');
+    window.addEventListener('beforeunload', (e) => {
+      if (this.state.didTransferData === 'undefined')
+      {
+        this.updateData.bind(this);
       }
-
-
-      this.updateData.bind(this);
+      if (!this.state.didTransferData) {
+        e.returnValue = `Are you sure you want to leave?`;
+      }
     });
 
     fetch('https://api.myjson.com/bins/1b5iud')
@@ -43,10 +40,16 @@ class App extends Component {
       }
 
       this.updateData.bind(this);
+
+      return '';
     });
   }
 
   updateData() {
+    this.setState({
+      didTransferData: this.state.didTransferData !== 'undefined' ? this.state.didTransferData : false
+    });
+
     if (this.state.items.length > 0) {
       fetch('https://api.myjson.com/bins/1b5iud', {
           method: 'put',
@@ -74,7 +77,15 @@ class App extends Component {
       return <div>Loading...</div>
     }
     else {
-      return <FileManager updateData={this.updateData.bind(this)} collapsed={false} data={items} />
+      return (
+        <div className='file-manager'>
+          <FileManager 
+            updateData={this.updateData.bind(this)} 
+            collapsed={false} 
+            data={items} 
+          />
+        </div>
+      );
     }
   }
 }
