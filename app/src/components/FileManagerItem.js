@@ -54,7 +54,7 @@ class FileManagerItem extends Component {
     let item = this.props.item;
     let itemType = item.type;
     let fileButtonColorType = '';
-    if (item.type == ItemTypes.file) {
+    if (item.type === ItemTypes.file) {
       switch (item.status) {
         case StatusTypes.todo:
           fileButtonColorType = 'red';
@@ -93,9 +93,10 @@ class FileManagerItem extends Component {
             </button>
             <button 
               onClick={this.toggleDeprecation.bind(this)}
-              className={`button button--square button--${this.state.deprecated ? 'green' : 'purple'}`}
+              className={`button button--icon button--${this.state.deprecated ? 'green' : 'purple'}`}
             >
-              {this.state.deprecated ? 'Y' : 'X'}
+              <span className={`icon icon--extra-small icon--cross ${this.state.deprecated ? '' : 'icon--cross--active'}`}></span>
+              {/* <span className={`icon icon--extra-small icon--check ${!this.state.deprecated ? 'icon--check--active' : ''}`}></span> */}
             </button>
           </div>
           : ''

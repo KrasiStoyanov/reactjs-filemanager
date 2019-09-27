@@ -8,12 +8,10 @@
     box-shadow: none;
     outline: 0;
     cursor: pointer;
-    @include button-variant(white, $brand-primary, $brand-primary);
+    @include button-variant($white, $brand-primary, $brand-primary);
     transition: all .2s ease-in-out;
 
-    &--square {
-        width: 20px;
-        height: 20px;
+    &--icon {
         @include button-size(3px, 3px, 1.2rem, 1.4rem, 4px);
     }
 
@@ -30,7 +28,7 @@
     }
 
     &--max-width {
-        max-width: 300px;
+        max-width: 200px;
     }
 
     &--full-width {
@@ -38,31 +36,31 @@
     }
 
     &--white {
-        @include button-variant($gray-dark, white, white);
+        @include button-variant($gray-dark, $white, $white);
     }
 
     &--grey {
-        @include button-variant(white, $gray-dark, $gray-dark);
+        @include button-variant($white, $gray-dark, $gray-dark);
     }
 
     &--red {
-        @include button-variant(white, $brand-danger, $brand-danger);
+        @include button-variant($white, $brand-danger, $brand-danger);
     }
 
     &--blue {
-        @include button-variant(white, $brand-info, $brand-info);
+        @include button-variant($white, $brand-info, $brand-info);
     }
 
     &--yellow {
-        @include button-variant(white, $brand-warning, $brand-warning);
+        @include button-variant($white, $brand-warning, $brand-warning);
     }
 
     &--green {
-        @include button-variant(white, $brand-success, $brand-success);
+        @include button-variant($white, $brand-success, $brand-success);
     }
 
     &--purple {
-        @include button-variant(white, purple, purple);
+        @include button-variant($white, $purple, $purple);
     }
 
     &--disabled {
