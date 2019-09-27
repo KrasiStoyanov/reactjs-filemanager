@@ -1,0 +1,79 @@
+.button {
+    display: inline-block;
+    padding: 10px 15px;
+    list-style-type: none;
+    font-size: 1.4rem;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: none;
+    outline: 0;
+    cursor: pointer;
+    @include button-variant(white, $brand-primary, $brand-primary);
+    transition: all .2s ease-in-out;
+
+    &--square {
+        width: 20px;
+        height: 20px;
+        @include button-size(3px, 3px, 1.2rem, 1.4rem, 4px);
+    }
+
+    &--extra-small {
+        @include button-size(6px, 10px, 1.2rem, 1.4rem, 4px);
+    }
+
+    &--small {
+        @include button-size(8px, 15px, 1.2rem, 1.4rem, 4px);
+    }
+
+    &--large {
+        @include button-size(12px, 20px, 1.4rem, 1.6rem, 4px);
+    }
+
+    &--max-width {
+        max-width: 300px;
+    }
+
+    &--full-width {
+        width: 100%;
+    }
+
+    &--white {
+        @include button-variant($gray-dark, white, white);
+    }
+
+    &--grey {
+        @include button-variant(white, $gray-dark, $gray-dark);
+    }
+
+    &--red {
+        @include button-variant(white, $brand-danger, $brand-danger);
+    }
+
+    &--blue {
+        @include button-variant(white, $brand-info, $brand-info);
+    }
+
+    &--yellow {
+        @include button-variant(white, $brand-warning, $brand-warning);
+    }
+
+    &--green {
+        @include button-variant(white, $brand-success, $brand-success);
+    }
+
+    &--purple {
+        @include button-variant(white, purple, purple);
+    }
+
+    &--disabled {
+        cursor: default;
+        @include button-variant($gray-light, $gray-lighter, $gray-lighter);
+
+        &,
+        &:hover,
+        &:active,
+        &.active {
+            box-shadow: none;
+        }
+    }
+}

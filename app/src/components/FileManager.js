@@ -5,7 +5,7 @@ class FileManager extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      collapsed: props.collapsed !== 'undefined' ? props.collapsed : true
+      collapsed: props.collapsed !== undefined ? props.collapsed : true
     };
   }
 
@@ -23,7 +23,7 @@ class FileManager extends Component {
     let data = this.props.data;
 
     return (
-      <ul className={`${this.state.collapsed ? 'collapsed' : ''}`}>
+      <ul className={`file-manager__list ${this.state.collapsed ? 'file-manager__list--collapsed' : ''}`}>
         {data.map((item, index) => {
           return (
             <FileManagerItem 

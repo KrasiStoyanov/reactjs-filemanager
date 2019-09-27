@@ -47,7 +47,7 @@ class App extends Component {
 
   updateData() {
     this.setState({
-      didTransferData: this.state.didTransferData !== 'undefined' ? this.state.didTransferData : false
+      didTransferData: this.state.didTransferData !== undefined ? this.state.didTransferData : false
     });
 
     if (this.state.items.length > 0) {

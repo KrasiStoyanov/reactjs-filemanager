@@ -1,5 +1,6 @@
 export const StatusTypes = {
-    inProgress: 'in-progress',
     todo: 'to-do',
+    inProgress: 'in-progress',
+    inReview: 'in-review',
     done: 'done'
 }
