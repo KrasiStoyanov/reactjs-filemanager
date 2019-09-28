@@ -1,5 +1,6 @@
 .button {
     display: inline-block;
+    position: relative;
     padding: 10px 15px;
     list-style-type: none;
     font-size: 1.4rem;
@@ -72,6 +73,13 @@
         &:active,
         &.active {
             box-shadow: none;
+        }
+    }
+
+    &__text {
+        &--hidden {
+            opacity: 0;
+            visibility: hidden;
         }
     }
 }

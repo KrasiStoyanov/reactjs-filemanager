@@ -2,33 +2,38 @@ import React, { Component } from 'react';
 
 import { ItemTypes } from '../constants/ItemTypes';
 import { StatusTypes } from '../constants/StatusTypes';
+
 import Filemanager from './FileManager';
+import Folder from './Folder';
 
 class FileManagerItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
       collapsed: props.item.collapsed !== undefined ? props.item.collapsed : true,
-      deprecated: props.item.deprecated !== undefined ? props.item.deprecated : false
+      deprecated: props.item.deprecated !== undefined ? props.item.deprecated : false,
+      item: props.item
     };
   }
 
   collapseFolder() {
-    this.setState({
-      collapsed: !this.state.collapsed
-    });
-
     this.props.item.collapsed = !this.state.collapsed;
     this.props.updateData();
+
+    this.setState({
+      collapsed: !this.state.collapsed,
+      item: this.props.item
+    });
   }
 
   toggleDeprecation() {
-    this.setState({
-      deprecated: !this.state.deprecated
-    });
-
     this.props.item.deprecated = !this.state.deprecated;
     this.props.updateData();
+    
+    this.setState({
+      deprecated: !this.state.deprecated,
+      item: this.props.item
+    });
   }
 
   toggleFileState() {
@@ -44,16 +49,42 @@ class FileManagerItem extends Component {
         break;
       case StatusTypes.done:
         this.props.item.status = StatusTypes.todo;
-        break;  
+        break;
+      default:
+        this.props.item.status = StatusTypes.todo;
+        break;
     }
 
+    this.props.updateData();
+    
+    this.setState({
+      item: this.props.item
+    });
+  }
+
+  renameItem(value) {
+    /**
+     * Do not mutate state directly.
+     * Insted create a copy of the state property value and change it.
+     * Afterwards call this.setState.
+     */
+    let itemCopy = Object.assign({}, this.state.item);
+    itemCopy.title = value;
+
+    this.setState({
+      item: itemCopy
+    });
+
+    // Update props and JSON data.
+    this.props.item.title = value;
     this.props.updateData();
   }
   
   render() {
-    let item = this.props.item;
+    let item = this.state.item;
     let itemType = item.type;
     let fileButtonColorType = '';
+    
     if (item.type === ItemTypes.file) {
       switch (item.status) {
         case StatusTypes.todo:
@@ -67,30 +98,38 @@ class FileManagerItem extends Component {
           break;
         case StatusTypes.done:
           fileButtonColorType = 'green';
-          break;  
+          break;
+        default:
+          fileButtonColorType = 'red';
+          break;
       }
     }
     
     return (
       <li>
         {itemType === ItemTypes.folder ?
-          <button 
-            onClick={this.collapseFolder.bind(this)}
-            className={`file-manager__item file-manager__item--folder button button--small button--full-width button--max-width button--grey`}
-          >
-            {item.title}
-          </button>
+          <Folder 
+            item={item} 
+            toggleCollapse={this.collapseFolder.bind(this)} 
+            renameItem={this.renameItem.bind(this)}
+          />
           : ''
         }
         {itemType === ItemTypes.file ?
           <div>
-            <button 
+            {/* <button 
               onClick={this.toggleFileState.bind(this)}
               className={`file-manager__item file-manager__item--file file-manager__item--file-${item.status} button button--extra-small button--${fileButtonColorType} ${this.state.deprecated ? 'button--disabled' : ''}`}
               disabled={`${this.state.deprecated ? 'button--disabled' : ''}`}
             >
               {item.title}.{item.extension}
-            </button>
+            </button> */}
+            <input 
+              defaultValue={`${item.title}.${item.extension}`} 
+              onClick={this.toggleFileState.bind(this)}
+              className={`file-manager__item file-manager__item--file file-manager__item--file-${item.status} button button--extra-small button--${fileButtonColorType} ${this.state.deprecated ? 'button--disabled' : ''}`}
+              disabled={`${this.state.deprecated ? 'button--disabled' : ''}`}
+            />
             <button 
               onClick={this.toggleDeprecation.bind(this)}
               className={`button button--icon button--${this.state.deprecated ? 'green' : 'purple'}`}
@@ -98,6 +137,12 @@ class FileManagerItem extends Component {
               <span className={`icon icon--extra-small icon--cross ${this.state.deprecated ? '' : 'icon--cross--active'}`}></span>
               {/* <span className={`icon icon--extra-small icon--check ${!this.state.deprecated ? 'icon--check--active' : ''}`}></span> */}
             </button>
+            {/* <button 
+              onClick={this.renameItem.bind(this)}
+              className={`button button--extra-small button--yellow`}
+            >
+              R
+            </button> */}
           </div>
           : ''
         }

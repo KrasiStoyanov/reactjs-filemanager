@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FileManager from './components/FileManager';
 
+import './helpers/String';
 import './assets/sass/style.scss';
 
 class App extends Component {
