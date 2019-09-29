@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
-import * as StringValidator from '../validators/StringValidator';
-
-import { ItemTypes } from '../constants/ItemTypes';
 
 class Folder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      collapseDisabled: false,
-      renameOptionText: null,
-      renameInput: null,
+      collapseDisabled: props.collapseDisabled,
+      renameOptionText: props.renameOptionText,
+      renameInput: props.renameInput,
       item: props.item
     };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.collapseDisabled !== state.collapseDisabled) {
+      return {
+        collapseDisabled: props.collapseDisabled
+      }
+    }
+
+    return null;
   }
   
   collapseFolder() {
@@ -21,61 +28,11 @@ class Folder extends Component {
   }
 
   enableRenameItem(e) {
-    let renameOption = e.target;
-    let parentNode = renameOption.parentNode;
-    let closestChildInput = parentNode.querySelector('.file-manager__item--input');
-
-    let renameOptionText = parentNode.querySelector('.button__text');
-    renameOptionText.classList.add('button__text--hidden');
-
-    closestChildInput.disabled = false;
-    closestChildInput.classList.add('file-manager__item--active');
-    closestChildInput.focus();
-
-    this.setState({
-      collapseDisabled: true,
-      renameOptionText: renameOptionText,
-      renameInput: closestChildInput
-    });
+    this.props.enableRenameItem(e);
   }
 
   detectKeyPress(e) {
-    let key = e.key;
-    let renameInput = e.target;
-
-    if (key === 'Enter') {
-      let isOk = this.validateItemNewName(renameInput.value);
-      if (isOk) {
-        this.disableRenameItem();
-        this.props.renameItem(renameInput.value);
-      }
-    }
-
-    if (key === 'Escape') {
-      this.disableRenameItem();
-      renameInput.value = this.props.item.title;
-    }
-  }
-
-  validateItemNewName(value) {
-    let label = `${ItemTypes.folder.capitalize()} name`;
-    StringValidator.IsNullorEmpty(null, label);
-
-    return true;
-  }
-
-  disableRenameItem() {
-    if (this.state.renameOptionText === undefined || this.state.renameInput === undefined) {
-      return;
-    }
-
-    this.state.renameInput.disabled = true;
-    this.state.renameInput.classList.remove('file-manager__item--active');
-    this.state.renameOptionText.classList.remove('button__text--hidden');
-
-    this.setState({
-      collapseDisabled: false
-    });
+    this.props.detectKeyPress(e);
   }
 
   render() {

@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 
 import { ItemTypes } from '../constants/ItemTypes';
 import { StatusTypes } from '../constants/StatusTypes';
+import * as StringHelper from '../helpers/String';
+import * as StringValidator from '../validators/StringValidator';
+import * as FileValidator from '../validators/FileValidator';
 
 import Filemanager from './FileManager';
 import Folder from './Folder';
+import File from './File';
 
 class FileManagerItem extends Component {
   constructor(props) {
@@ -12,8 +16,16 @@ class FileManagerItem extends Component {
     this.state = {
       collapsed: props.item.collapsed !== undefined ? props.item.collapsed : true,
       deprecated: props.item.deprecated !== undefined ? props.item.deprecated : false,
-      item: props.item
+      item: props.item,
+      renameOptionText: null,
+      renameInput: null,
+      collapseDisabled: false,
+      fileStateDisabled: false
     };
+  }
+
+  updateData() {
+    this.props.updateData();
   }
 
   collapseFolder() {
@@ -62,6 +74,72 @@ class FileManagerItem extends Component {
     });
   }
 
+  enableRenameItem(e) {
+    let renameOption = e.target;
+    let parentNode = renameOption.parentNode;
+    let closestChildInput = parentNode.querySelector('.file-manager__item--input');
+
+    let renameOptionText = parentNode.querySelector('.button__text');
+    renameOptionText.classList.add('button__text--hidden');
+
+    closestChildInput.disabled = false;
+    closestChildInput.classList.add('file-manager__item--active');
+    closestChildInput.focus();
+
+    this.setState({
+      collapseDisabled: true,
+      renameOptionText: renameOptionText,
+      renameInput: closestChildInput
+    });
+  }
+
+  detectKeyPress(e) {
+    let key = e.key;
+    let renameInput = e.target;
+
+    if (key === 'Enter') {
+      let isOk = this.validateItemNewName(renameInput.value);
+      if (isOk) {
+        this.disableRenameItem();
+        if (this.state.item.type === ItemTypes.file) {
+          let splitValue = renameInput.split('.');
+          // TODO: rename the item correspondingly to the file's criteria
+        }
+        this.renameItem(renameInput.value);
+      }
+    }
+
+    if (key === 'Escape') {
+      this.disableRenameItem();
+      renameInput.value = this.props.item.title;
+    }
+  }
+
+  validateItemNewName(value) {
+    let label = `${StringHelper.capitalize(ItemTypes.folder)} name`;
+    StringValidator.IsNullorEmpty(value, label);
+
+    if (this.state.item.type === ItemTypes.file) {
+      FileValidator.HasExtension(value);
+    }
+
+    return true;
+  }
+
+  disableRenameItem() {
+    if (this.state.renameOptionText === undefined || this.state.renameInput === undefined) {
+      return;
+    }
+
+    this.state.renameInput.disabled = true;
+    this.state.renameInput.classList.remove('file-manager__item--active');
+    this.state.renameOptionText.classList.remove('button__text--hidden');
+
+    this.setState({
+      collapseDisabled: false
+    });
+  }
+
   renameItem(value) {
     /**
      * Do not mutate state directly.
@@ -83,27 +161,6 @@ class FileManagerItem extends Component {
   render() {
     let item = this.state.item;
     let itemType = item.type;
-    let fileButtonColorType = '';
-    
-    if (item.type === ItemTypes.file) {
-      switch (item.status) {
-        case StatusTypes.todo:
-          fileButtonColorType = 'red';
-          break;
-        case StatusTypes.inProgress:
-          fileButtonColorType = 'blue';
-          break;
-        case StatusTypes.inReview:
-          fileButtonColorType = 'yellow';
-          break;
-        case StatusTypes.done:
-          fileButtonColorType = 'green';
-          break;
-        default:
-          fileButtonColorType = 'red';
-          break;
-      }
-    }
     
     return (
       <li>
@@ -111,39 +168,30 @@ class FileManagerItem extends Component {
           <Folder 
             item={item} 
             toggleCollapse={this.collapseFolder.bind(this)} 
-            renameItem={this.renameItem.bind(this)}
+            enableRenameItem={this.enableRenameItem.bind(this)} 
+            detectKeyPress={this.detectKeyPress.bind(this)} 
+            renameItem={this.renameItem.bind(this)} 
+            collapseDisabled={this.state.collapseDisabled} 
+            renameOptionText={this.state.renameOptionText} 
+            renameInput={this.renameInput} 
+            updateData={this.updateData.bind(this)}
           />
           : ''
         }
         {itemType === ItemTypes.file ?
-          <div>
-            {/* <button 
-              onClick={this.toggleFileState.bind(this)}
-              className={`file-manager__item file-manager__item--file file-manager__item--file-${item.status} button button--extra-small button--${fileButtonColorType} ${this.state.deprecated ? 'button--disabled' : ''}`}
-              disabled={`${this.state.deprecated ? 'button--disabled' : ''}`}
-            >
-              {item.title}.{item.extension}
-            </button> */}
-            <input 
-              defaultValue={`${item.title}.${item.extension}`} 
-              onClick={this.toggleFileState.bind(this)}
-              className={`file-manager__item file-manager__item--file file-manager__item--file-${item.status} button button--extra-small button--${fileButtonColorType} ${this.state.deprecated ? 'button--disabled' : ''}`}
-              disabled={`${this.state.deprecated ? 'button--disabled' : ''}`}
-            />
-            <button 
-              onClick={this.toggleDeprecation.bind(this)}
-              className={`button button--icon button--${this.state.deprecated ? 'green' : 'purple'}`}
-            >
-              <span className={`icon icon--extra-small icon--cross ${this.state.deprecated ? '' : 'icon--cross--active'}`}></span>
-              {/* <span className={`icon icon--extra-small icon--check ${!this.state.deprecated ? 'icon--check--active' : ''}`}></span> */}
-            </button>
-            {/* <button 
-              onClick={this.renameItem.bind(this)}
-              className={`button button--extra-small button--yellow`}
-            >
-              R
-            </button> */}
-          </div>
+          <File 
+            item={item} 
+            toggleDeprecation={this.toggleDeprecation.bind(this)} 
+            toggleFileState={this.toggleFileState.bind(this)} 
+            enableRenameItem={this.enableRenameItem.bind(this)} 
+            detectKeyPress={this.detectKeyPress.bind(this)} 
+            renameItem={this.renameItem.bind(this)} 
+            renameInput={this.renameInput} 
+            updateData={this.updateData.bind(this)} 
+            fileStateDisabled={this.state.fileStateDisabled} 
+            deprecated={this.state.deprecated} 
+            renameOptionText={this.state.renameOptionText} 
+          />
           : ''
         }
         {item.children ? (
