@@ -41,7 +41,7 @@ class FileManagerItem extends Component {
   toggleDeprecation() {
     this.props.item.deprecated = !this.state.deprecated;
     this.props.updateData();
-    
+
     this.setState({
       deprecated: !this.state.deprecated,
       item: this.props.item
@@ -68,7 +68,7 @@ class FileManagerItem extends Component {
     }
 
     this.props.updateData();
-    
+
     this.setState({
       item: this.props.item
     });
@@ -94,36 +94,48 @@ class FileManagerItem extends Component {
   }
 
   detectKeyPress(e) {
+    let processedValue = {};
     let key = e.key;
     let renameInput = e.target;
 
     if (key === 'Enter') {
       let isOk = this.validateItemNewName(renameInput.value);
+      console.log(isOk)
+
       if (isOk) {
         this.disableRenameItem();
+
         if (this.state.item.type === ItemTypes.file) {
-          let splitValue = renameInput.split('.');
-          // TODO: rename the item correspondingly to the file's criteria
+          let splitValue = renameInput.value.split('.');
+
+          processedValue.title = splitValue[0];
+          processedValue.extension = splitValue[1];
         }
-        this.renameItem(renameInput.value);
+        else {
+          processedValue.title = renameInput.value;
+        }
+
+        this.renameItem(processedValue);
       }
     }
 
     if (key === 'Escape') {
       this.disableRenameItem();
+
       renameInput.value = this.props.item.title;
     }
   }
 
   validateItemNewName(value) {
     let label = `${StringHelper.capitalize(ItemTypes.folder)} name`;
-    StringValidator.IsNullorEmpty(value, label);
+    let isValid = false;
+    isValid = StringValidator.isNullorEmpty(value, label);
 
     if (this.state.item.type === ItemTypes.file) {
-      FileValidator.HasExtension(value);
+      isValid = FileValidator.validateName(value);
     }
 
-    return true;
+    return isValid;
   }
 
   disableRenameItem() {
@@ -140,6 +152,9 @@ class FileManagerItem extends Component {
     });
   }
 
+  // TODO: Implement commenting system.
+  // TODO: Add sorting/filtering options.
+
   renameItem(value) {
     /**
      * Do not mutate state directly.
@@ -147,21 +162,29 @@ class FileManagerItem extends Component {
      * Afterwards call this.setState.
      */
     let itemCopy = Object.assign({}, this.state.item);
-    itemCopy.title = value;
+    itemCopy.title = value.title;
+
+    if (value.extension) {
+      itemCopy.extension = value.extension;
+    }
 
     this.setState({
       item: itemCopy
     });
 
     // Update props and JSON data.
-    this.props.item.title = value;
+    this.props.item.title = value.title;
+    if (value.extension) {
+      this.props.item.extension = value.extension;      
+    }
+
     this.props.updateData();
   }
-  
+
   render() {
     let item = this.state.item;
     let itemType = item.type;
-    
+
     return (
       <li>
         {itemType === ItemTypes.folder ?

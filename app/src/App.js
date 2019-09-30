@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import ReactNotification from 'react-notifications-component';
+
 import FileManager from './components/FileManager';
+
+import 'animate.css/animate.min.css';
+import 'react-notifications-component/dist/theme.css';
 
 import './helpers/String';
 import './assets/sass/style.scss';
@@ -15,8 +20,7 @@ class App extends Component {
 
   componentDidMount() {
     window.addEventListener('beforeunload', (e) => {
-      if (this.state.didTransferData === 'undefined')
-      {
+      if (this.state.didTransferData === 'undefined') {
         this.updateData.bind(this);
       }
       if (!this.state.didTransferData) {
@@ -57,17 +61,17 @@ class App extends Component {
           mode: 'cors',
           body: JSON.stringify(this.state.items),
           headers: {
-            'Content-Type': 'application/json'          
+            'Content-Type': 'application/json'
           }
-      })
-      .then(res => {
-        this.setState({
-          didTransferData: true
-        });
-      
-        return res;
-      })
-      .catch(err => err);
+        })
+        .then(res => {
+          this.setState({
+            didTransferData: true
+          });
+
+          return res;
+        })
+        .catch(err => err);
     }
   }
 
@@ -76,10 +80,10 @@ class App extends Component {
 
     if (!isLoaded) {
       return <div>Loading...</div>
-    }
-    else {
+    } else {
       return (
         <div className='file-manager'>
+          <ReactNotification />
           <FileManager 
             updateData={this.updateData.bind(this)} 
             collapsed={false} 

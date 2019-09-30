@@ -20,7 +20,7 @@ class Folder extends Component {
 
     return null;
   }
-  
+
   collapseFolder() {
     if (!this.state.collapseDisabled) {
       this.props.toggleCollapse();

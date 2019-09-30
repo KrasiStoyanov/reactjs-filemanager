@@ -18,7 +18,7 @@ class FileManager extends Component {
 
     return null;
   }
-  
+
   render() {
     let data = this.props.data;
 
