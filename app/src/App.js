@@ -6,7 +6,7 @@ import FileManager from './components/FileManager';
 import 'animate.css/animate.min.css';
 import 'react-notifications-component/dist/theme.css';
 
-import './helpers/String';
+import './helpers/StringHelper';
 import './assets/sass/style.scss';
 
 class App extends Component {

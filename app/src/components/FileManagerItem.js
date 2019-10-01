@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { ItemTypes } from '../constants/ItemTypes';
 import { StatusTypes } from '../constants/StatusTypes';
-import * as StringHelper from '../helpers/String';
+import * as StringHelper from '../helpers/StringHelper';
 import * as StringValidator from '../validators/StringValidator';
 import * as FileValidator from '../validators/FileValidator';
 
@@ -88,6 +88,7 @@ class FileManagerItem extends Component {
 
     this.setState({
       collapseDisabled: true,
+      fileStateDisabled: true,
       renameOptionText: renameOptionText,
       renameInput: closestChildInput
     });
@@ -100,21 +101,10 @@ class FileManagerItem extends Component {
 
     if (key === 'Enter') {
       let isOk = this.validateItemNewName(renameInput.value);
-      console.log(isOk)
-
       if (isOk) {
         this.disableRenameItem();
 
-        if (this.state.item.type === ItemTypes.file) {
-          let splitValue = renameInput.value.split('.');
-
-          processedValue.title = splitValue[0];
-          processedValue.extension = splitValue[1];
-        }
-        else {
-          processedValue.title = renameInput.value;
-        }
-
+        let processedValue = this.processNewFilename(renameInput.value);
         this.renameItem(processedValue);
       }
     }
@@ -123,7 +113,24 @@ class FileManagerItem extends Component {
       this.disableRenameItem();
 
       renameInput.value = this.props.item.title;
+      if (this.state.item.type === ItemTypes.file) {
+        renameInput.value = `${this.props.item.title}.${this.props.item.extension}`;
+      }
     }
+  }
+
+  processNewFilename(value) {
+    let result = {};
+    if (this.state.item.type === ItemTypes.file) {
+      let splitValue = value.split('.');
+
+      result.title = splitValue[0];
+      result.extension = splitValue[1];
+    } else {
+      result.title = value;
+    }
+
+    return result;
   }
 
   validateItemNewName(value) {
@@ -132,7 +139,14 @@ class FileManagerItem extends Component {
     isValid = StringValidator.isNullorEmpty(value, label);
 
     if (this.state.item.type === ItemTypes.file) {
-      isValid = FileValidator.validateName(value);
+      let hasForbiddenCharacters = FileValidator.hasForbiddenCharacters(value);
+      let hasInvalidExtension = FileValidator.hasInvalidExtension(value);
+
+      if (hasForbiddenCharacters || hasInvalidExtension) {
+        isValid = false;
+      } else {
+        isValid = true;
+      }
     }
 
     return isValid;
@@ -148,7 +162,8 @@ class FileManagerItem extends Component {
     this.state.renameOptionText.classList.remove('button__text--hidden');
 
     this.setState({
-      collapseDisabled: false
+      collapseDisabled: false,
+      fileStateDisabled: false
     });
   }
 
@@ -175,7 +190,7 @@ class FileManagerItem extends Component {
     // Update props and JSON data.
     this.props.item.title = value.title;
     if (value.extension) {
-      this.props.item.extension = value.extension;      
+      this.props.item.extension = value.extension;
     }
 
     this.props.updateData();

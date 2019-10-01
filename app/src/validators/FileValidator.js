@@ -1,51 +1,51 @@
 import * as ValidationMessages from '../constants/ValidationMessages';
-import { store } from 'react-notifications-component';
+import * as ReactNotificationConstants from '../constants/ReactNotifications';
+import * as ReactNotificationsHelper from '../helpers/ReactNotificationsHelper';
 
 export let hasForbiddenCharacters = (filename) => {
   let HasForbiddenCharacters = filename.match(/^([0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ])+$/);
   if (!HasForbiddenCharacters) {
-    store.addNotification({
-      title: "Error",
-      message: ValidationMessages.filename.hasForbiddenCharacters,
-      type: "danger",
-      insert: "top",
-      container: "top-right",
-      animationIn: ["animated", "flipInX"],
-      animationOut: ["animated", "flipOutX"],
-      dismiss: {
-        duration: 5000,
-        onScreen: true
-      }
-    });
+    ReactNotificationsHelper.addNewNotification(
+      ReactNotificationConstants.type.error,
+      ValidationMessages.filename.hasForbiddenCharacters
+    );
+
+    return true;
   }
 
   let startsWithDot = filename.match(/^\./);
   if (startsWithDot) {
-    throw new Error(ValidationMessages.filename.startsWithDot);
+    ReactNotificationsHelper.addNewNotification(
+      ReactNotificationConstants.type.error,
+      ValidationMessages.filename.startsWithDot
+    );
+
+    return true;
   }
 
   let equalsForbiddenFilenames = filename.match(/^(nul|prn|con|lpt[0-9]|com[0-9])(\.|$)/i);
   if (equalsForbiddenFilenames) {
-    throw new Error(ValidationMessages.filename.forbidden);
+    ReactNotificationsHelper.addNewNotification(
+      ReactNotificationConstants.type.error,
+      ValidationMessages.filename.forbidden
+    );
+
+    return true;
   }
 
-  return true;
+  return false;
 }
 
-export let hasValidExtension = (filename) => {
-  let extension = filename.match(/\.[A-Za-z]{2,}$/);
+export let hasInvalidExtension = (filename) => {
+  let extension = filename.match(/\.[a-zA-Z]{2,}$/);
   if (!extension) {
-    throw new Error(ValidationMessages.filename.invalidExtension);
+    ReactNotificationsHelper.addNewNotification(
+      ReactNotificationConstants.type.error,
+      ValidationMessages.filename.invalidExtension
+    );
+
+    return true;
   }
 
-  return true;
-}
-
-export let validateName = (filename) => {
-  let isValid = false;
-
-  isValid = hasForbiddenCharacters(filename);
-  isValid = hasValidExtension(filename);
-
-  return isValid;
+  return false;
 }
