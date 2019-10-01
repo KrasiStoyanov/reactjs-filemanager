@@ -32,6 +32,7 @@ class Folder extends Component {
   }
 
   disableRenameItem(e) {
+    e.target.value = this.props.renameOptionText.textContent;
     this.props.disableRenameItem();
   }
 
