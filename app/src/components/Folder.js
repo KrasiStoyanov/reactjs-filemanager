@@ -31,6 +31,10 @@ class Folder extends Component {
     this.props.enableRenameItem(e);
   }
 
+  disableRenameItem(e) {
+    this.props.disableRenameItem();
+  }
+
   detectKeyPress(e) {
     this.props.detectKeyPress(e);
   }
@@ -41,19 +45,20 @@ class Folder extends Component {
     return (
       <div>
         <button
-          onClick={this.collapseFolder.bind(this)}
+          onClick={this.collapseFolder.bind(this)} 
           className={`file-manager__item file-manager__item--folder button button--small button--full-width button--max-width button--grey`}
         >
           <input
-            type="text"
-            defaultValue={item.title}
-            onKeyDown={this.detectKeyPress.bind(this)}
+            type="text" 
+            defaultValue={item.title} 
+            onKeyDown={this.detectKeyPress.bind(this)} 
+            onBlur={this.disableRenameItem.bind(this)} 
             className={`file-manager__item file-manager__item--input`}
           />
           <span className="button__text">{item.title}</span>
         </button>
         <button
-          onClick={this.enableRenameItem.bind(this)}
+          onClick={this.enableRenameItem.bind(this)} 
           className={`button button--extra-small button--yellow`}
         >
           R

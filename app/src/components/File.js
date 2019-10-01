@@ -45,6 +45,10 @@ class File extends Component {
     this.props.enableRenameItem(e);
   }
 
+  disableRenameItem(e) {
+    this.props.disableRenameItem();
+  }
+
   detectKeyPress(e) {
     this.props.detectKeyPress(e);
   }
@@ -52,7 +56,7 @@ class File extends Component {
   render() {
     let item = this.state.item;
     let fileButtonColorType = '';
-    
+
     if (item.type === ItemTypes.file) {
       switch (item.status) {
         case StatusTypes.todo:
@@ -76,26 +80,27 @@ class File extends Component {
     return (
       <div>
         <button 
-          onClick={this.toggleFileState.bind(this)}
-          className={`file-manager__item file-manager__item--file file-manager__item--file-${item.status} button button--extra-small button--${fileButtonColorType} ${this.state.deprecated ? 'button--disabled' : ''}`}
+          onClick={this.toggleFileState.bind(this)} 
+          className={`file-manager__item file-manager__item--file file-manager__item--file-${item.status} button button--extra-small button--${fileButtonColorType} ${this.state.deprecated ? 'button--disabled' : ''}`} 
           disabled={`${this.state.deprecated ? 'button--disabled' : ''}`}
         >
           <input
-            type="text"
-            defaultValue={`${item.title}.${item.extension}`}
-            onKeyDown={this.detectKeyPress.bind(this)}
+            type="text" 
+            defaultValue={`${item.title}.${item.extension}`} 
+            onKeyDown={this.detectKeyPress.bind(this)} 
+            onBlur={this.disableRenameItem.bind(this)} 
             className={`file-manager__item file-manager__item--input`}
           />
           <span className="button__text">{item.title}.{item.extension}</span>
         </button>
         <button 
-          onClick={this.toggleDeprecation.bind(this)}
+          onClick={this.toggleDeprecation.bind(this)} 
           className={`button button--icon button--${this.state.deprecated ? 'green' : 'purple'}`}
         >
           <span className={`icon icon--extra-small icon--cross ${this.state.deprecated ? '' : 'icon--cross--active'}`}></span>
         </button>
         <button
-          onClick={this.enableRenameItem.bind(this)}
+          onClick={this.enableRenameItem.bind(this)} 
           className={`button button--extra-small button--yellow`}
         >
           R

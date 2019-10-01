@@ -4,7 +4,7 @@ import { ItemTypes } from '../constants/ItemTypes';
 import { StatusTypes } from '../constants/StatusTypes';
 import * as StringHelper from '../helpers/StringHelper';
 import * as StringValidator from '../validators/StringValidator';
-import * as FileValidator from '../validators/FileValidator';
+import * as NameValidator from '../validators/NameValidator';
 
 import Filemanager from './FileManager';
 import Folder from './Folder';
@@ -24,10 +24,17 @@ class FileManagerItem extends Component {
     };
   }
 
+  /**
+   * Call the function for updating the data API from the props.
+   */
   updateData() {
     this.props.updateData();
   }
 
+  /**
+   * Toggle the collapse state of the current folder.
+   * @return {object} [The updated state]
+   */
   collapseFolder() {
     this.props.item.collapsed = !this.state.collapsed;
     this.props.updateData();
@@ -38,6 +45,10 @@ class FileManagerItem extends Component {
     });
   }
 
+  /**
+   * Toggle the deprecation state of the current file.
+   * @return {object} [The updated state]
+   */
   toggleDeprecation() {
     this.props.item.deprecated = !this.state.deprecated;
     this.props.updateData();
@@ -48,6 +59,10 @@ class FileManagerItem extends Component {
     });
   }
 
+  /**
+   * Switch the state of the current file.
+   * @return {object} [The updated state]
+   */
   toggleFileState() {
     switch (this.props.item.status) {
       case StatusTypes.todo:
@@ -74,18 +89,35 @@ class FileManagerItem extends Component {
     });
   }
 
+  /**
+   * Enable the possibility to rename the selected file manager item.
+   * @param  {event} e [The event object]
+   * @return {object}   [The updated state]
+   */
   enableRenameItem(e) {
+    /**
+     * Get the parent of the toggle button for renaming a file manager item and find the renaming input.
+     */
     let renameOption = e.target;
     let parentNode = renameOption.parentNode;
     let closestChildInput = parentNode.querySelector('.file-manager__item--input');
 
+    /**
+     * Get the current name from the same file manager option and hide it.
+     */
     let renameOptionText = parentNode.querySelector('.button__text');
     renameOptionText.classList.add('button__text--hidden');
 
+    /**
+     * Enable the renaming input and show it to the user as well as focus on it.
+     */
     closestChildInput.disabled = false;
     closestChildInput.classList.add('file-manager__item--active');
     closestChildInput.focus();
 
+    /**
+     * Disable the possibilities to collapse folders or changing file states while renaming.
+     */
     this.setState({
       collapseDisabled: true,
       fileStateDisabled: true,
@@ -94,21 +126,37 @@ class FileManagerItem extends Component {
     });
   }
 
+  /**
+   * On input type catch every key pressed and check for specific ones.
+   * If the user has pressed a button that represents them being done with renaming, the function will validate their input and proceed to updating and saving the data.
+   * If the user has pressed a button that represents them exiting, the function will disable the input and return to the normal state.
+   * @param  {event} e [The event object]
+   */
   detectKeyPress(e) {
     let processedValue = {};
     let key = e.key;
     let renameInput = e.target;
 
+    /**
+     * Check if the user is done with renaming the file manager item.
+     * If so, validate the new name and proceed to updating and storing the data.
+     * @param  {string} key [The currently pressed key]
+     */
     if (key === 'Enter') {
       let isOk = this.validateItemNewName(renameInput.value);
       if (isOk) {
         this.disableRenameItem();
 
-        let processedValue = this.processNewFilename(renameInput.value);
+        let processedValue = this.processNewName(renameInput.value);
         this.renameItem(processedValue);
       }
     }
 
+    /**
+     * Check if the user wants to escape renaming the file manager item.
+     * If so, disable the renaming possibility and return the item to its normal state.
+     * @param  {string} key [The currently pressed key]
+     */
     if (key === 'Escape') {
       this.disableRenameItem();
 
@@ -119,39 +167,45 @@ class FileManagerItem extends Component {
     }
   }
 
-  processNewFilename(value) {
-    let result = {};
-    if (this.state.item.type === ItemTypes.file) {
-      let splitValue = value.split('.');
+  /**
+   * Validate the new file manager item name.
+   * @param  {string} value [The new file manager item name]
+   * @return {bool}       [Whether the provided file manager item name is valid]
+   */
+  validateItemNewName(value) {
+    let label = `${StringHelper.capitalize(this.props.item.type)} name`;
+    let isValid = false;
 
-      result.title = splitValue[0];
-      result.extension = splitValue[1];
+    /**
+     * Validation for all types of file manager items.
+     */
+    let isNullOrEmpty = StringValidator.isNullOrEmpty(value, label);
+    let hasForbiddenCharacters = NameValidator.hasForbiddenCharacters(value, label);
+    if (hasForbiddenCharacters || isNullOrEmpty) {
+      isValid = false;
     } else {
-      result.title = value;
+      isValid = true;
     }
 
-    return result;
-  }
-
-  validateItemNewName(value) {
-    let label = `${StringHelper.capitalize(ItemTypes.folder)} name`;
-    let isValid = false;
-    isValid = StringValidator.isNullorEmpty(value, label);
-
-    if (this.state.item.type === ItemTypes.file) {
-      let hasForbiddenCharacters = FileValidator.hasForbiddenCharacters(value);
-      let hasInvalidExtension = FileValidator.hasInvalidExtension(value);
-
-      if (hasForbiddenCharacters || hasInvalidExtension) {
+    /**
+     * If the file manager item is a file, validate its extension.
+     * @param  {string} this.props.item.type [The type of the file manager item]
+     * @return {bool}                      [Whether the file extension is valid]
+     */
+    if (this.props.item.type === ItemTypes.file) {
+      let hasInvalidExtension = NameValidator.hasInvalidExtension(value, label);
+      if (hasInvalidExtension) {
         isValid = false;
-      } else {
-        isValid = true;
       }
     }
 
     return isValid;
   }
 
+  /**
+   * Disable the option to rename a file manager item.
+   * @return {object} [The updated state]
+   */
   disableRenameItem() {
     if (this.state.renameOptionText === undefined || this.state.renameInput === undefined) {
       return;
@@ -167,9 +221,39 @@ class FileManagerItem extends Component {
     });
   }
 
+  /**
+   * Process the new file manager item name.
+   * @param  {strinf} value [The new file manager item name]
+   * @return {object}       [The processed file manager item name]
+   */
+  processNewName(value) {
+    let result = {};
+
+    /**
+     * If the file manager item is a file, split the name and the extension.
+     * @param  {string} this.state.item.type [The type of the file manager item]
+     * @return {object}                      [The updated result]
+     */
+    if (this.state.item.type === ItemTypes.file) {
+      let splitValue = value.split('.');
+
+      result.title = splitValue[0];
+      result.extension = splitValue[1];
+    } else {
+      result.title = value;
+    }
+
+    return result;
+  }
+
   // TODO: Implement commenting system.
   // TODO: Add sorting/filtering options.
+  // TODO: Add a button for adding a file/folder and add it to the list of children and begin the rename function. If the user presses escape or clicks outside, the newly added element is removed from the list. The global data should be updated only when the user successfully adds a new item
 
+  /**
+   * Rename the file manager item with the provided processed and validated value.
+   * @param  {string} value [The processed and validated new file manager item name]
+   */
   renameItem(value) {
     /**
      * Do not mutate state directly.
@@ -179,6 +263,11 @@ class FileManagerItem extends Component {
     let itemCopy = Object.assign({}, this.state.item);
     itemCopy.title = value.title;
 
+    /**
+     * If the new name has an extension, that means it is a file. Add that extension to the copied file variable.
+     * @param  {string} value.extension [Whether the new name has an extension]
+     * @return {object}                 [The updated item copy]
+     */
     if (value.extension) {
       itemCopy.extension = value.extension;
     }
@@ -187,7 +276,9 @@ class FileManagerItem extends Component {
       item: itemCopy
     });
 
-    // Update props and JSON data.
+    /**
+     * Update props and JSON data.
+     */
     this.props.item.title = value.title;
     if (value.extension) {
       this.props.item.extension = value.extension;
@@ -207,6 +298,7 @@ class FileManagerItem extends Component {
             item={item} 
             toggleCollapse={this.collapseFolder.bind(this)} 
             enableRenameItem={this.enableRenameItem.bind(this)} 
+            disableRenameItem={this.disableRenameItem.bind(this)} 
             detectKeyPress={this.detectKeyPress.bind(this)} 
             renameItem={this.renameItem.bind(this)} 
             collapseDisabled={this.state.collapseDisabled} 
@@ -222,6 +314,7 @@ class FileManagerItem extends Component {
             toggleDeprecation={this.toggleDeprecation.bind(this)} 
             toggleFileState={this.toggleFileState.bind(this)} 
             enableRenameItem={this.enableRenameItem.bind(this)} 
+            disableRenameItem={this.disableRenameItem.bind(this)} 
             detectKeyPress={this.detectKeyPress.bind(this)} 
             renameItem={this.renameItem.bind(this)} 
             renameInput={this.renameInput} 

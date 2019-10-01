@@ -1,13 +1,16 @@
 import * as ValidationMessages from '../constants/ValidationMessages';
+import * as ReactNotificationConstants from '../constants/ReactNotifications';
+import * as ReactNotificationsHelper from '../helpers/ReactNotificationsHelper';
 
-export let isNullorEmpty = (string, stringLabel) => {
-  if (string === null || string === undefined) {
-    throw new Error(`${stringLabel} ${ValidationMessages.nullOrEmpty}`);
+export let isNullOrEmpty = (string, itemType) => {
+  if (string === null || string === undefined || string.length <= 0) {
+    ReactNotificationsHelper.addNewNotification(
+      ReactNotificationConstants.type.error,
+      `${itemType} ${ValidationMessages.nullOrEmpty}`
+    );
+
+    return true;
   }
 
-  if (string.length <= 0) {
-    throw new Error(`${stringLabel} cannot be empty`);
-  }
-
-  return true;
+  return false;
 };
