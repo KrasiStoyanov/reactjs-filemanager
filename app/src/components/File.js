@@ -46,8 +46,16 @@ class File extends Component {
   }
 
   disableRenameItem(e) {
-    e.target.value = this.props.renameOptionText.textContent;
-    this.props.disableRenameItem();
+    /**
+     * Disable the rename item only if the application isn't busy processing the data.
+     * @type {Boolean}
+     */
+    let isCurrentlyProcessingNewName = e.target.getAttribute('data-processing');
+    if (!isCurrentlyProcessingNewName) {
+      e.target.value = this.props.renameOptionText.textContent;
+      
+      this.props.disableRenameItem();
+    }
   }
 
   detectKeyPress(e) {

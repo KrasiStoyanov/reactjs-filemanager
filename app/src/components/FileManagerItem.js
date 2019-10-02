@@ -145,10 +145,13 @@ class FileManagerItem extends Component {
     if (key === 'Enter') {
       let isOk = this.validateItemNewName(renameInput.value);
       if (isOk) {
+        this.state.renameInput.setAttribute('data-processing', true);
         this.disableRenameItem();
 
         let processedValue = this.processNewName(renameInput.value);
         this.renameItem(processedValue);
+
+        this.state.renameInput.removeAttribute('data-processing');
       }
     }
 
@@ -211,13 +214,19 @@ class FileManagerItem extends Component {
       return;
     }
 
-    this.state.renameInput.disabled = true;
+    /**
+     * Escape state mutability by copying the reference to the state variable and updating the copy, not the state directly.
+     */
+    let renameInputCopy = this.state.renameInput;
+    renameInputCopy.disabled = true;
+
     this.state.renameInput.classList.remove('file-manager__item--active');
     this.state.renameOptionText.classList.remove('button__text--hidden');
 
     this.setState({
       collapseDisabled: false,
-      fileStateDisabled: false
+      fileStateDisabled: false,
+      renameInput: renameInputCopy
     });
   }
 
